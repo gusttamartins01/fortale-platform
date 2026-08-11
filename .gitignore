@@ -1,0 +1,22 @@
+# OS files
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# Node
+node_modules
+
+# Environment files
+.env
+
+# Vercel
+.vercel
+
+# IDE files
+.vscode/
+.idea/
+
+# database files
+*.db
