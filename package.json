@@ -1,14 +1,14 @@
 {
-  "name": "fortale-backend",
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "node --watch --env-file=.env .src/server.ts"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.5.8",
-    "@types/node": "^26.2.0",
-    "lefthook": "^2.1.10",
-    "typescript": "^7.0.2"
-  }
+	"name": "fortale-backend",
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "node --watch --env-file=.env .src/server.ts"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.5.8",
+		"@types/node": "^26.2.0",
+		"lefthook": "^2.1.10",
+		"typescript": "^7.0.2"
+	}
 }
