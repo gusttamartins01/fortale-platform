@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
-import { NotFoundError } from '../errors/index.ts';
+import { NotFoundError, ValidationError } from '../errors/index.ts';
 import logger from '../lib/logger.ts';
 
 export default function errorHandler(
@@ -11,6 +11,13 @@ export default function errorHandler(
 	if (error instanceof NotFoundError) {
 		response.status(error.statusCode).json({ message: error.message });
 		return;
+	}
+
+	if (error instanceof ValidationError) {
+		response.status(error.statusCode).json({
+			message: error.message,
+			fields: error.fields
+		});
 	}
 
 	logger.error(error);
