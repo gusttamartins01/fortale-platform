@@ -35,3 +35,6 @@ export const updateUserSchema = z.object({
 		.max(10, 'Limite atingido: esperava-se um texto com menos de 10 caracteres')
 		.optional()
 });
+
+export type CreateUser = z.infer<typeof createUserSchema>;
+export type UpdateUser = z.infer<typeof updateUserSchema>;
