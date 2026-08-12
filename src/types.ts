@@ -6,3 +6,8 @@ export type User = {
 	created_at: string;
 	updated_at: string;
 };
+
+export type ValidationFieldError = {
+	field: string;
+	message: string;
+};
