@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
+		"noEmit": true,
+		"strict": true,
+		"erasableSyntaxOnly": true,
+		"verbatimModuleSyntax": true,
+		"allowArbitraryExtensions": true,
+		"rewriteRelativeImportExtensions": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"types": ["node"]
+	},
+	"rootDir": "src",
+	"outDir": "dist",
+	"include": ["src"]
+}
