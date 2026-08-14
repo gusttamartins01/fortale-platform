@@ -1,4 +1,3 @@
-```md
 # 🌴 Fortalê
 
 > Uma plataforma para descobrir o que fazer em Fortaleza.
@@ -146,4 +145,3 @@ O Fortalê nasceu com uma ideia simples:
 > **Tornar mais fácil descobrir Fortaleza.**
 
 Mais do que listar pontos turísticos, a proposta é reunir diferentes formas de aproveitar a cidade e criar uma experiência centralizada para quem quer descobrir **o que fazer, onde ir e o que conhecer em Fortaleza.**
-```
