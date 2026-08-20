@@ -2,7 +2,7 @@ import type { Request, Response } from 'express';
 import type { CreateUser, UpdateUser } from '../schemas/user.schema.ts';
 import * as UserService from '../services/user.service.ts';
 
-export function getAllUser(_request: Request, response: Response) {
+export function getAllUsers(_request: Request, response: Response) {
 	const user = UserService.findAllUsers();
 
 	response.status(200).json(user);
