@@ -10,7 +10,7 @@ export function findAllUsers(): User[] {
 export function findUserById(id: number): User {
 	const user = users.find((u) => u.id === id);
 
-	if (!user) throw new NotFoundError(`Client with ID ${id} not found.`);
+	if (!user) throw new NotFoundError(`User with ID ${id} not found.`);
 
 	return user;
 }
@@ -22,8 +22,8 @@ export function insertUser({ name, email, phone, password }: CreateUser): User {
 		email,
 		phone,
 		password,
-		created_at: '2026-08-12',
-		updated_at: '2026-08-12'
+		createdAt: '2026-08-12',
+		updatedAt: '2026-08-12'
 	};
 
 	users.push(user);
@@ -37,7 +37,7 @@ export function modifyUser(
 ): User {
 	const user = users.find((u) => u.id === id);
 
-	if (!user) throw new NotFoundError(`Client with ID ${id} not found.`);
+	if (!user) throw new NotFoundError(`User with ID ${id} not found.`);
 
 	if (name) user.name = name;
 	if (email) user.email = email;
@@ -50,7 +50,7 @@ export function modifyUser(
 export function removeUser(id: number): void {
 	const index = users.findIndex((u) => u.id === id);
 
-	if (index === -1) throw new NotFoundError(`Client with ID ${id} not found.`);
+	if (index === -1) throw new NotFoundError(`User with ID ${id} not found.`);
 
 	users.splice(index, 1);
 }

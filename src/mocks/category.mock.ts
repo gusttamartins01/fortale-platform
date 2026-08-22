@@ -6,6 +6,6 @@ export const categories: Category[] = [
 		name: 'Cafeterias',
 		description:
 			'Encontre cafeterias e espaços aconchegantes para tomar um café e aproveitar momentos especiais em Fortaleza.',
-		created_at: '2026-08-19'
+		createdAt: '2026-08-19'
 	}
 ];

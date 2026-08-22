@@ -13,7 +13,7 @@ export function findAllCategories(): Category[] {
 export function findCategoryById(id: number): Category {
 	const category = categories.find((c) => c.id === id);
 
-	if (!category) throw new NotFoundError(`Catgeory with ID ${id} not found.`);
+	if (!category) throw new NotFoundError(`Categeory with ID ${id} not found.`);
 
 	return category;
 }
@@ -26,7 +26,7 @@ export function insertCategory({
 		id: categories[categories.length - 1].id + 1,
 		name,
 		description,
-		created_at: '2026-08-19'
+		createdAt: '2026-08-19'
 	};
 
 	categories.push(category);
@@ -40,7 +40,7 @@ export function modifyCategory(
 ): Category {
 	const category = categories.find((c) => c.id === id);
 
-	if (!category) throw new NotFoundError(`Catgeory with ID ${id} not found.`);
+	if (!category) throw new NotFoundError(`Categeory with ID ${id} not found.`);
 
 	if (name) category.name = name;
 	if (description) category.description = description;

@@ -14,15 +14,15 @@ export type User = {
 	email: string;
 	phone?: string | null;
 	password?: string;
-	created_at: Date | string;
-	updated_at: Date | string;
+	createdAt: Date | string;
+	updatedAt: Date | string;
 };
 
 export type Category = {
 	id: number;
 	name: string;
 	description?: string | null;
-	created_at: Date | string;
+	createdAt: Date | string;
 };
 
 export type Place = {
@@ -36,54 +36,54 @@ export type Place = {
 	phone?: string | null;
 	website?: string | null;
 	instagram?: string | null;
-	opening_hours?: string | null;
-	price_ranger?: string | null;
-	is_active: boolean;
-	created_at: Date | string;
-	updated_at: Date | string;
+	openingHours?: string | null;
+	priceRanger?: string | null;
+	isActive: boolean;
+	createdAt: Date | string;
+	updatedAt: Date | string;
 };
 
 export type PlaceCategory = {
-	place_id: number;
-	category_id: number;
+	placeId: number;
+	categoryId: number;
 };
 
 export type Event = {
 	id: number;
-	place_id: number;
-	category_id: number;
+	placeId: number;
+	categoryId: number;
 	title: string;
 	description?: string | null;
-	start_date: Date | string;
-	end_date?: Date | string | null;
-	start_time?: string | null;
-	end_time?: string | null;
+	startDate: Date | string;
+	endDate?: Date | string | null;
+	startTime?: string | null;
+	endTime?: string | null;
 	price?: number | null;
-	created_at: Date | string;
-	updated_at: Date | string;
+	createdAt: Date | string;
+	updatedAt: Date | string;
 };
 
 export type Favorite = {
 	id: number;
-	user_id: number;
-	place_id: number;
-	created_at: Date | string;
+	userId: number;
+	placeId: number;
+	updatedAt: Date | string;
 };
 
 export type Review = {
 	id: number;
-	user_id: number;
-	place_id: number;
+	userId: number;
+	placeId: number;
 	rating: number;
 	comment?: string | null;
-	created_at: Date | string;
-	updated_at: Date | string;
+	createdAt: Date | string;
+	updatedAt: Date | string;
 };
 
 export type PlaceImage = {
 	id: number;
-	place_id: number;
+	placeId: number;
 	url: string;
-	is_cover: boolean;
-	created_at: Date | string;
+	isCover: boolean;
+	createdAt: Date | string;
 };
