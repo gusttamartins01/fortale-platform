@@ -32,29 +32,30 @@ export const createPlaceSchema = z.object({
 
 	latitude: z.number().min(-90).max(90).nullable(),
 
-	longitude: z.number().min(-100).max(100).nullable(),
+	longitude: z.number().min(-180).max(180).nullable(),
 
 	phone: z
 		.string('Entrada inválida: esperava-se um texto.')
-		.min(9, 'Muito curto: esperava-se um texto com ao menos 9 caracteres.')
+		.regex(/^\d+$/, 'O telefone deve conter apenas números.')
+		.min(10, 'Muito curto: esperava-se um texto com ao menos 10 caracteres.')
 		.max(15, 'Limite atingido: esperava-se um texto com menos de 15 caracteres')
 		.nullable(),
-	website: z.string('Entrada inválida: esperava-se um texto.').nullable(),
+	website: z.string('URL do site inválida..').nullable(),
 	instagram: z
-		.string('Entrada inválida: esperava-se um texto.')
+		.string('URL do Instagram inválida.')
 		.max(
 			100,
 			'Limite atingido: esperava-se um texto com menos de 100 caracteres'
 		)
 		.nullable(),
-	opening_hours: z
+	openingHours: z
 		.string('Entrada inválida: esperava-se um texto.')
 		.max(
 			500,
 			'Limite atingido: esperava-se um texto com menos de 500 caracteres'
 		)
 		.nullable(),
-	price_ranger: z
+	priceRange: z
 		.string('Entrada inválida: esperava-se um texto.')
 		.max(50, 'Limite atingido: esperava-se um texto com menos de 50 caracteres')
 		.nullable()
@@ -104,19 +105,16 @@ export const updatePlaceSchema = z.object({
 		.max(15, 'Limite atingido: esperava-se um texto com menos de 15 caracteres')
 		.nullable()
 		.optional(),
-	website: z
-		.string('Entrada inválida: esperava-se um texto.')
-		.nullable()
-		.optional(),
+	website: z.string('URL do site inválida.').nullable().optional(),
 	instagram: z
-		.string('Entrada inválida: esperava-se um texto.')
+		.string('URL do Instagram inválida.')
 		.max(
 			100,
 			'Limite atingido: esperava-se um texto com menos de 100 caracteres'
 		)
 		.nullable()
 		.optional(),
-	opening_hours: z
+	openingHours: z
 		.string('Entrada inválida: esperava-se um texto.')
 		.max(
 			500,
@@ -124,7 +122,7 @@ export const updatePlaceSchema = z.object({
 		)
 		.nullable()
 		.optional(),
-	price_ranger: z
+	priceRange: z
 		.string('Entrada inválida: esperava-se um texto.')
 		.max(50, 'Limite atingido: esperava-se um texto com menos de 50 caracteres')
 		.nullable()

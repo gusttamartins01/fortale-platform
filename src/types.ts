@@ -13,7 +13,8 @@ export type User = {
 	name: string;
 	email: string;
 	phone?: string | null;
-	password?: string;
+	password: string;
+	// roleId: number
 	createdAt: Date | string;
 	updatedAt: Date | string;
 };
@@ -37,7 +38,7 @@ export type Place = {
 	website?: string | null;
 	instagram?: string | null;
 	openingHours?: string | null;
-	priceRanger?: string | null;
+	priceRange?: string | null;
 	isActive: boolean;
 	createdAt: Date | string;
 	updatedAt: Date | string;
@@ -54,7 +55,7 @@ export type Event = {
 	categoryId: number;
 	title: string;
 	description?: string | null;
-	startDate: Date | string;
+	startDate?: Date | string;
 	endDate?: Date | string | null;
 	startTime?: string | null;
 	endTime?: string | null;
@@ -83,7 +84,7 @@ export type Review = {
 export type PlaceImage = {
 	id: number;
 	placeId: number;
-	url: string;
+	imageUrl: string;
 	isCover: boolean;
 	createdAt: Date | string;
 };

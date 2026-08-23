@@ -14,8 +14,12 @@ export const createUserSchema = z.object({
 		),
 	password: z
 		.string('Entrada inválida: esperava-se um texto.')
-		.min(5, 'Muito curto: esperava-se um texto com ao menos 5 caracteres.')
-		.max(10, 'Limite atingido: esperava-se um texto com menos de 10 caracteres')
+		.min(8, 'Muito curto: esperava-se um texto com ao menos 8 caracteres.')
+		.max(
+			100,
+			'Limite atingido: esperava-se um texto com menos de 100 caracteres'
+		)
+	// roleId: z.number().int().positive()
 });
 
 export const updateUserSchema = z.object({

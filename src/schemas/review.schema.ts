@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
 export const createReviewSchema = z.object({
-	user_id: z.number().int().positive(),
-	place_id: z.number().int().positive(),
+	userId: z.number().int().positive(),
+	placeId: z.number().int().positive(),
 	rating: z
 		.number()
 		.int('Entrada inválida: esperava-se um número.')
@@ -15,8 +15,6 @@ export const createReviewSchema = z.object({
 });
 
 export const updateReviewSchema = z.object({
-	user_id: z.number().int().positive().optional(),
-	place_id: z.number().int().positive().optional(),
 	rating: z
 		.number()
 		.int('Entrada inválida: esperava-se um número.')
