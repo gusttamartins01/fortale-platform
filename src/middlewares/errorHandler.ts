@@ -18,6 +18,7 @@ export default function errorHandler(
 			message: error.message,
 			fields: error.fields
 		});
+		return;
 	}
 
 	logger.error(error);

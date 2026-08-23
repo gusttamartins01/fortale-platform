@@ -7,12 +7,12 @@ export default function validate(schema: ZodType) {
 		const result = schema.safeParse(request.body);
 
 		if (!result.success) {
-			const fileds = result.error.issues.map((issue) => ({
+			const fields = result.error.issues.map((issue) => ({
 				field: issue.path.join(''),
 				message: issue.message
 			}));
 
-			next(new ValidationError('invalid data', fileds));
+			return next(new ValidationError('invalid data', fields));
 		}
 
 		request.body = result.data;
