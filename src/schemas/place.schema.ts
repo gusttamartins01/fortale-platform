@@ -101,7 +101,8 @@ export const updatePlaceSchema = z.object({
 
 	phone: z
 		.string('Entrada inválida: esperava-se um texto.')
-		.min(9, 'Muito curto: esperava-se um texto com ao menos 9 caracteres.')
+		.regex(/^\d+$/, 'O telefone deve conter apenas números.')
+		.min(10, 'Muito curto: esperava-se um texto com ao menos 10 caracteres.')
 		.max(15, 'Limite atingido: esperava-se um texto com menos de 15 caracteres')
 		.nullable()
 		.optional(),
