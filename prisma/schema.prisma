@@ -1,20 +1,44 @@
 datasource db {
-    provider = "postgresql"
+  provider = "postgresql"
 }
 
 generator client {
-    provider = "prisma-client"
-    output = "./src/generated"
+  provider = "prisma-client"
+  output   = "./src/generated"
+}
+
+model Role {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  users User[]
+
+  @@map("roles")
 }
 
 model User {
-    id        Int      @id             @default(autoincrement())
-    name      String
-    email     String   @unique
-    phone     String?
-    password  String
-    createdAt DateTime @default(now()) @map("created_at")
-    updatedAt DateTime @updatedAt      @map("update_at")
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  phone     String?
+  password  String
+  roleId    Int
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("update_at")
 
-    @@map("users")
+  role Role @relation(fields: [roleId], references: [id])
+
+  @@map("users")
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  // places PlaceCatgeory[]
+  // events Event[]
+
+  @@map("categories")
 }
