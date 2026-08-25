@@ -1,56 +1,43 @@
 import { NotFoundError } from '../errors/index.ts';
-import { users } from '../mocks/user.mock.ts';
+import { prisma } from '../lib/prisma.ts';
 import type { CreateUser, UpdateUser } from '../schemas/user.schema.ts';
 import type { User } from '../types.ts';
 
-export function findAllUsers(): User[] {
+export async function findAllUsers(): Promise<User[]> {
+	const users = await prisma.user.findMany();
+
 	return users;
 }
 
-export function findUserById(id: number): User {
-	const user = users.find((u) => u.id === id);
+export async function findUserById(id: number): Promise<User> {
+	const user = await prisma.user.findUnique({
+		where: { id }
+	});
 
 	if (!user) throw new NotFoundError(`User with ID ${id} not found.`);
 
 	return user;
 }
 
-export function insertUser({ name, email, phone, password }: CreateUser): User {
-	const user: User = {
-		id: users[users.length - 1].id + 1,
-		name,
-		email,
-		phone,
-		password,
-		createdAt: '2026-08-12',
-		updatedAt: '2026-08-12'
-	};
-
-	users.push(user);
-
-	return user;
+export async function insertUser(data: CreateUser): Promise<User> {
+	return await prisma.user.create({
+		data
+	});
 }
 
-export function modifyUser(
-	id: number,
-	{ name, email, phone, password }: UpdateUser
-): User {
-	const user = users.find((u) => u.id === id);
+export async function modifyUser(id: number, data: UpdateUser): Promise<User> {
+	await findUserById(id);
 
-	if (!user) throw new NotFoundError(`User with ID ${id} not found.`);
-
-	if (name) user.name = name;
-	if (email) user.email = email;
-	if (phone) user.phone = phone;
-	if (password) user.password = password;
-
-	return user;
+	return await prisma.user.update({
+		where: { id },
+		data
+	});
 }
 
-export function removeUser(id: number): void {
-	const index = users.findIndex((u) => u.id === id);
+export async function removeUser(id: number): Promise<void> {
+	await findUserById(id);
 
-	if (index === -1) throw new NotFoundError(`User with ID ${id} not found.`);
-
-	users.splice(index, 1);
+	await prisma.user.delete({
+		where: { id }
+	});
 }
