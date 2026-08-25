@@ -1,58 +1,49 @@
 import { NotFoundError } from '../errors/index.ts';
-import { categories } from './../mocks/category.mock.ts';
+import { prisma } from '../lib/prisma.ts';
 import type {
 	CreateCategory,
 	UpdateCategory
 } from '../schemas/category.schema.ts';
 import type { Category } from '../types.ts';
 
-export function findAllCategories(): Category[] {
-	return categories;
+export async function findAllCategories(): Promise<Category[]> {
+	const users = await prisma.category.findMany();
+
+	return users;
 }
 
-export function findCategoryById(id: number): Category {
-	const category = categories.find((c) => c.id === id);
+export async function findCategoryById(id: number): Promise<Category> {
+	const category = await prisma.category.findUnique({
+		where: { id }
+	});
 
 	if (!category) throw new NotFoundError(`Categeory with ID ${id} not found.`);
 
 	return category;
 }
 
-export function insertCategory({
-	name,
-	description
-}: CreateCategory): Category {
-	const category = {
-		id: categories[categories.length - 1].id + 1,
-		name,
-		description,
-		createdAt: '2026-08-19'
-	};
-
-	categories.push(category);
-
-	return category;
+export async function insertCategory(data: CreateCategory): Promise<Category> {
+	return await prisma.category.create({
+		data
+	});
 }
 
-export function modifyCategory(
+export async function modifyCategory(
 	id: number,
-	{ name, description }: UpdateCategory
-): Category {
-	const category = categories.find((c) => c.id === id);
+	data: UpdateCategory
+): Promise<Category> {
+	await findCategoryById(id);
 
-	if (!category) throw new NotFoundError(`Categeory with ID ${id} not found.`);
-
-	if (name) category.name = name;
-	if (description) category.description = description;
-
-	return category;
+	return await prisma.category.update({
+		where: { id },
+		data
+	});
 }
 
-export function removeCategory(id: number): void {
-	const index = categories.findIndex((c) => c.id === id);
+export async function removeCategory(id: number): Promise<void> {
+	await findCategoryById(id);
 
-	if (index === -1)
-		throw new NotFoundError(`Category with ID ${id} not found.`);
-
-	categories.splice(index, 1);
+	await prisma.category.delete({
+		where: { id }
+	});
 }

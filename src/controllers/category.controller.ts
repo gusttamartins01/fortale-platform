@@ -5,47 +5,41 @@ import type {
 } from '../schemas/category.schema.ts';
 import * as CategoryService from '../services/category.service.ts';
 
-export function getAllCategories(_request: Request, response: Response) {
-	const category = CategoryService.findAllCategories();
+export async function getAllCategories(_request: Request, response: Response) {
+	const category = await CategoryService.findAllCategories();
 
 	response.status(200).json(category);
 }
 
-export function getCategoryById(request: Request, response: Response) {
+export async function getCategoryById(request: Request, response: Response) {
 	const id = Number(request.params.id);
 
-	const caregory = CategoryService.findCategoryById(id);
+	const caregory = await CategoryService.findCategoryById(id);
 
 	response.status(200).json(caregory);
 }
 
-export function createCategory(request: Request, response: Response) {
-	const { name, description } = request.body as CreateCategory;
+export async function createCategory(request: Request, response: Response) {
+	const body = request.body as CreateCategory;
 
-	const category = CategoryService.insertCategory({
-		name,
-		description
-	});
+	const category = await CategoryService.insertCategory(body);
 
 	response.status(201).json(category);
 }
 
-export function updateCategory(request: Request, response: Response) {
+export async function updateCategory(request: Request, response: Response) {
 	const id = Number(request.params.id);
-	const { name, description } = request.body as UpdateCategory;
+	const body = request.body as UpdateCategory;
 
-	const category = CategoryService.modifyCategory(id, {
-		name,
-		description
-	});
+	const category = await CategoryService.modifyCategory(id, body);
 
 	response.status(200).json(category);
 }
 
-export function deleteCategory(request: Request, response: Response) {
+export async function deleteCategory(request: Request, response: Response) {
 	const id = Number(request.params.id);
 
-	CategoryService.removeCategory(id);
+	await CategoryService.removeCategory(id);
 
 	response.status(204).send();
 }
