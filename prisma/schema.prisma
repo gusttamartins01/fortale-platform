@@ -24,7 +24,7 @@ model User {
   password  String
   roleId    Int
   createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("update_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   role Role @relation(fields: [roleId], references: [id])
 
