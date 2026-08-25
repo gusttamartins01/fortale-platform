@@ -16,8 +16,8 @@ export const createUserSchema = z.object({
 		.max(
 			100,
 			'Limite atingido: esperava-se um texto com menos de 100 caracteres'
-		)
-	// roleId: z.number().int().positive()
+		),
+	roleId: z.number().int().positive()
 });
 
 export const updateUserSchema = z.object({
@@ -38,8 +38,8 @@ export const updateUserSchema = z.object({
 		.max(
 			100,
 			'Limite atingido: esperava-se um texto com menos de 100 caracteres'
-		)
-		.optional()
+		),
+	roleId: z.number().int().positive().optional()
 });
 
 export type CreateUser = z.infer<typeof createUserSchema>;

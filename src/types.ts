@@ -14,7 +14,7 @@ export type User = {
 	email: string;
 	phone?: string | null;
 	password: string;
-	// roleId: number
+	roleId: number;
 	createdAt: Date | string;
 	updatedAt: Date | string;
 };
