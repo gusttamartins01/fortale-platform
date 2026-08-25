@@ -7,6 +7,7 @@ export const users: User[] = [
 		email: 'luiz.silva@gmail.com',
 		phone: '(85) 99856-8223',
 		password: 'a1b2c3d4e5',
+		roleId: 1,
 		createdAt: '2026-08-11',
 		updatedAt: '2026-08-11'
 	}
