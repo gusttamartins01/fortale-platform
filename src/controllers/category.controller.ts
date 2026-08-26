@@ -14,9 +14,9 @@ export async function getAllCategories(_request: Request, response: Response) {
 export async function getCategoryById(request: Request, response: Response) {
 	const id = Number(request.params.id);
 
-	const caregory = await CategoryService.findCategoryById(id);
+	const category = await CategoryService.findCategoryById(id);
 
-	response.status(200).json(caregory);
+	response.status(200).json(category);
 }
 
 export async function createCategory(request: Request, response: Response) {

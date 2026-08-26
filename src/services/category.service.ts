@@ -7,9 +7,9 @@ import type {
 import type { Category } from '../types.ts';
 
 export async function findAllCategories(): Promise<Category[]> {
-	const users = await prisma.category.findMany();
+	const categories = await prisma.category.findMany();
 
-	return users;
+	return categories;
 }
 
 export async function findCategoryById(id: number): Promise<Category> {
@@ -17,7 +17,7 @@ export async function findCategoryById(id: number): Promise<Category> {
 		where: { id }
 	});
 
-	if (!category) throw new NotFoundError(`Categeory with ID ${id} not found.`);
+	if (!category) throw new NotFoundError(`Category with ID ${id} not found.`);
 
 	return category;
 }
