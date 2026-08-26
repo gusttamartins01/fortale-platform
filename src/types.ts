@@ -55,7 +55,7 @@ export type Event = {
 	categoryId: number;
 	title: string;
 	description?: string | null;
-	startDate?: Date | string;
+	startDate?: Date | string | null;
 	endDate?: Date | string | null;
 	startTime?: string | null;
 	endTime?: string | null;
@@ -68,7 +68,7 @@ export type Favorite = {
 	id: number;
 	userId: number;
 	placeId: number;
-	updatedAt: Date | string;
+	createdAt: Date | string;
 };
 
 export type Review = {
