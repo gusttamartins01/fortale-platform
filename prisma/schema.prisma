@@ -26,7 +26,9 @@ model User {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  role Role @relation(fields: [roleId], references: [id])
+  role      Role       @relation(fields: [roleId], references: [id])
+  favorites Favorite[]
+  reviews   Review[]
 
   @@map("users")
 }
@@ -37,8 +39,107 @@ model Category {
   description String?
   createdAt   DateTime @default(now()) @map("created_at")
 
-  // places PlaceCatgeory[]
-  // events Event[]
+  places PlaceCategory[]
+  events Event[]
 
   @@map("categories")
+}
+
+model Place {
+  id           Int      @id @default(autoincrement())
+  name         String
+  description  String?
+  address      String?
+  neighborhood String?
+  latitude     Float?
+  longitude    Float?
+  phone        String?
+  website      String?
+  instagram    String?
+  openingHours String?  @map("opening_hours")
+  priceRange   String?  @map("price_range")
+  isActive     Boolean  @default(true) @map("is_active")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  categories PlaceCategory[]
+  events     Event[]
+  favorites  Favorite[]
+  reviews    Review[]
+  images     PlaceImage[]
+
+  @@map("places")
+}
+
+model PlaceCategory {
+  placeId    Int @map("place_id")
+  categoryId Int @map("category_id")
+
+  place Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([placeId, categoryId])
+  @@map("place_categories")
+}
+
+model Event {
+  id          Int       @id @default(autoincrement())
+  placeId     Int       @map("place_id")
+  categoryId  Int       @map("category_id")
+  title       String
+  description String?
+  startDate   DateTime? @map("start_date")
+  endDate     DateTime? @map("end_date")
+  startTime   String?   @map("start_time")
+  endTime     String?   @map("end_time")
+  price       Decimal?  @db.Decimal(10, 2)
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  place    Place    @relation(fields: [placeId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@map("events")
+}
+
+model Favorite {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  placeId   Int      @map("place_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  place Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, placeId])
+  @@map("favorites")
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  placeId   Int      @map("place_id")
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  place Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, placeId])
+  @@map("reviews")
+}
+
+model PlaceImage {
+  id        Int      @id @default(autoincrement())
+  placeId   Int      @map("place_id")
+  imageUrl  String   @map("image_url")
+  isCover   Boolean  @default(false) @map("is_cover")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  place Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  @@map("place_images")
 }
