@@ -16,9 +16,9 @@ export const createEventSchema = z.object({
 		.nullable(),
 	startDate: z.coerce.date(),
 	endDate: z.coerce.date().nullable(),
-	startTime: z.string('Entrada inválida: esperava-se um texto').nullable(),
+	startTime: z.string('Entrada inválida: esperava-se um texto.').nullable(),
 	endTime: z.string('Entrada inválida: esperava-se um texto.').nullable(),
-	price: z.number().nonnegative().nullable()
+	price: z.coerce.number().nonnegative().nullable()
 });
 
 export const updateEventSchema = z.object({
@@ -27,10 +27,10 @@ export const updateEventSchema = z.object({
 	title: z.string().min(1).max(150).optional(),
 	description: z.string().max(1000).nullable().optional(),
 	startDate: z.coerce.date().optional(),
-	endDate: z.coerce.date().optional(),
+	endDate: z.coerce.date().nullable().optional(),
 	startTime: z.string().nullable().optional(),
 	endTime: z.string().nullable().optional(),
-	price: z.number().nonnegative().nullable().optional()
+	price: z.coerce.number().nonnegative().nullable().optional()
 });
 
 export type CreateEvent = z.infer<typeof createEventSchema>;

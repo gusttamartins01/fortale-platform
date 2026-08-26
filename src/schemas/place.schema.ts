@@ -40,9 +40,9 @@ export const createPlaceSchema = z.object({
 		.min(10, 'Muito curto: esperava-se um texto com ao menos 10 caracteres.')
 		.max(15, 'Limite atingido: esperava-se um texto com menos de 15 caracteres')
 		.nullable(),
-	website: z.string('URL do site inválida..').nullable(),
+	website: z.url('URL do site inválida..').nullable(),
 	instagram: z
-		.string('URL do Instagram inválida.')
+		.url('URL do Instagram inválida.')
 		.max(
 			100,
 			'Limite atingido: esperava-se um texto com menos de 100 caracteres'
@@ -97,7 +97,7 @@ export const updatePlaceSchema = z.object({
 
 	latitude: z.number().min(-90).max(90).nullable().optional(),
 
-	longitude: z.number().min(-100).max(100).nullable().optional(),
+	longitude: z.number().min(-180).max(180).nullable().optional(),
 
 	phone: z
 		.string('Entrada inválida: esperava-se um texto.')
@@ -106,9 +106,9 @@ export const updatePlaceSchema = z.object({
 		.max(15, 'Limite atingido: esperava-se um texto com menos de 15 caracteres')
 		.nullable()
 		.optional(),
-	website: z.string('URL do site inválida.').nullable().optional(),
+	website: z.url('URL do site inválida.').nullable().optional(),
 	instagram: z
-		.string('URL do Instagram inválida.')
+		.url('URL do Instagram inválida.')
 		.max(
 			100,
 			'Limite atingido: esperava-se um texto com menos de 100 caracteres'

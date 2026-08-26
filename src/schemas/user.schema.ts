@@ -38,7 +38,8 @@ export const updateUserSchema = z.object({
 		.max(
 			100,
 			'Limite atingido: esperava-se um texto com menos de 100 caracteres'
-		),
+		)
+		.optional(),
 	roleId: z.number().int().positive().optional()
 });
 
