@@ -3,9 +3,9 @@ import type { CreateUser, UpdateUser } from '../schemas/user.schema.ts';
 import * as UserService from '../services/user.service.ts';
 
 export async function getAllUsers(_request: Request, response: Response) {
-	const user = await UserService.findAllUsers();
+	const users = await UserService.findAllUsers();
 
-	response.status(200).json(user);
+	response.status(200).json(users);
 }
 
 export async function getUserById(request: Request, response: Response) {
