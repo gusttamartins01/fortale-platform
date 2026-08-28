@@ -1,3 +1,5 @@
+import type { Decimal } from '@prisma/client/runtime/client';
+
 export type ValidationFieldError = {
 	field: string;
 	message: string;
@@ -59,7 +61,7 @@ export type Event = {
 	endDate?: Date | string | null;
 	startTime?: string | null;
 	endTime?: string | null;
-	price?: number | null;
+	price?: Decimal | null;
 	createdAt: Date | string;
 	updatedAt: Date | string;
 };
