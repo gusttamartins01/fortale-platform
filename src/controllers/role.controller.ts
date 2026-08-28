@@ -2,8 +2,8 @@ import type { Request, Response } from 'express';
 import type { CreateRole, UpdateRole } from '../schemas/role.schema.ts';
 import * as RoleService from '../services/role.service.ts';
 
-export async function getAllRole(_request: Request, response: Response) {
-	const roles = await RoleService.findAllRole();
+export async function getAllRoles(_request: Request, response: Response) {
+	const roles = await RoleService.findAllRoles();
 
 	response.status(200).json(roles);
 }
