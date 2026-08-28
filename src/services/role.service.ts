@@ -3,7 +3,7 @@ import { prisma } from '../lib/prisma.ts';
 import type { CreateRole, UpdateRole } from '../schemas/role.schema.ts';
 import type { Role } from '../types.ts';
 
-export async function findAllRole(): Promise<Role[]> {
+export async function findAllRoles(): Promise<Role[]> {
 	const roles = await prisma.role.findMany();
 
 	return roles;
