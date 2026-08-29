@@ -1,5 +1,5 @@
 import { NotFoundError } from '../errors/index.ts';
-import { prisma } from '../lib/prisma.ts';
+import prisma from '../lib/prisma.ts';
 import type {
 	CreateCategory,
 	UpdateCategory
