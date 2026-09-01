@@ -7,6 +7,7 @@ import eventRouter from './routes/event.route.ts';
 import favoriteRouter from './routes/favorite.route.ts';
 import placeRoute from './routes/place.route.ts';
 import placeCategoryRouter from './routes/placeCategory.route.ts';
+import placeImageRouter from './routes/placeImage.route.ts';
 import reviewRouter from './routes/review.route.ts';
 import roleRoute from './routes/role.route.ts';
 import userRoute from './routes/user.route.ts';
@@ -25,6 +26,7 @@ app.use('/place-categories', placeCategoryRouter);
 app.use('/events', eventRouter);
 app.use('/favorites', favoriteRouter);
 app.use('/reviews', reviewRouter);
+app.use('/place-images', placeImageRouter);
 
 app.use((_request, response) => {
 	response.status(404).json({
